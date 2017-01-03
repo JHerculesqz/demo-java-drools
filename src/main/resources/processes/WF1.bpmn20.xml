@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+        xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+        xmlns:activiti="http://activiti.org/bpmn"
+        targetNamespace="Examples">
+
+    <process id="WF1" name="WF1">
+        <startEvent id="start" />
+        <sequenceFlow id="flow1" sourceRef="start" targetRef="step1" />
+        <serviceTask id="step1" activiti:expression="#{step1.run()}" />
+        <sequenceFlow id="flow2" sourceRef="step1" targetRef="step2" />
+        <serviceTask id="step2" activiti:expression="#{step2.run()}" />
+        <sequenceFlow id="flow3" sourceRef="step2" targetRef="end" />
+        <endEvent id="end" />
+    </process>
+</definitions>
