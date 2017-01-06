@@ -5,13 +5,12 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@EnableAutoConfiguration // (exclude = { DataSourceAutoConfiguration.class,
-							// HibernateJpaAutoConfiguration.class })
-public class ActivitiApplication {
+@EnableAutoConfiguration
+public class DroolsApplication {
 	// #region main
 
 	public static void main(String[] args) {
-		SpringApplication.run(ActivitiApplication.class, args);
+		SpringApplication.run(DroolsApplication.class, args);
 	}
 
 	// #endregion

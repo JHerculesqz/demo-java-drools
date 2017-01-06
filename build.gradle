@@ -36,8 +36,10 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-websocket')
 	compileOnly('org.projectlombok:lombok')
-	compile("org.activiti:spring-boot-starter-basic:5.17.0")
-	compile("com.h2database:h2:1.4.185")
+	//compile("org.kie:kie-spring:5.5.0.Final")
+	compile("org.kie:kie-api:6.0.0.CR1")
+	compile("org.drools:drools-core:6.0.0.CR1")
+	compile("org.drools:drools-compiler:6.0.0.CR1")
 }
 
 dependencyManagement {
