@@ -1,20 +1,20 @@
 package rules
 
-import com.huawei.client.vo.PointDomain;
+import com.huawei.client.provider.subprovider.vo.TestVo;
 
 rule birthdayPoint
 	// 过生日，则加10分，并且将当月交易比数翻倍后再计算积分
 	salience 100
 	lock-on-active true
 	when
-		$pointDomain : PointDomain(birthDay == true)
+		$testVo : TestVo(birthDay == true)
 	then
-		$pointDomain.setPoint($pointDomain.getPoint()+10);
-		$pointDomain.setBuyNums($pointDomain.getBuyNums()*2);
-		$pointDomain.setBuyMoney($pointDomain.getBuyMoney()*2);
-		$pointDomain.setBillThisMonth($pointDomain.getBillThisMonth()*2);
+		$testVo.setPoint($testVo.getPoint()+10);
+		$testVo.setBuyNums($testVo.getBuyNums()*2);
+		$testVo.setBuyMoney($testVo.getBuyMoney()*2);
+		$testVo.setBillThisMonth($testVo.getBillThisMonth()*2);
 		
-		$pointDomain.recordPointLog($pointDomain.getUserName(),"birthday");
+		$testVo.recordPointLog($testVo.getUserName(),"birthday");
 end
 
 rule billThisMonthPoint
@@ -24,10 +24,10 @@ rule billThisMonthPoint
 	date-effective "2011-01-08 23:59:59"
 	date-expires "2011-08-08 23:59:59"
 	when
-		$pointDomain : PointDomain(billThisMonth >= 3)
+		$testVo : TestVo(billThisMonth >= 3)
 	then
-		$pointDomain.setPoint($pointDomain.getPoint()+$pointDomain.getBillThisMonth()/3*30);
-		$pointDomain.recordPointLog($pointDomain.getUserName(),"billThisMonth");
+		$testVo.setPoint($testVo.getPoint()+$testVo.getBillThisMonth()/3*30);
+		$testVo.recordPointLog($testVo.getUserName(),"billThisMonth");
 end
 
 rule buyMoneyPoint
@@ -35,10 +35,10 @@ rule buyMoneyPoint
 	salience 98
 	lock-on-active true
 	when
-		$pointDomain : PointDomain(buyMoney >= 100)
+		$testVo : TestVo(buyMoney >= 100)
 	then
-		$pointDomain.setPoint($pointDomain.getPoint()+ (int)$pointDomain.getBuyMoney()/100 * 10);
-		$pointDomain.recordPointLog($pointDomain.getUserName(),"buyMoney");
+		$testVo.setPoint($testVo.getPoint()+ (int)$testVo.getBuyMoney()/100 * 10);
+		$testVo.recordPointLog($testVo.getUserName(),"buyMoney");
 end
 
 rule buyNumsPoint
@@ -46,10 +46,10 @@ rule buyNumsPoint
 	salience 97
 	lock-on-active true
 	when
-		$pointDomain : PointDomain(buyNums >= 5)
+		$testVo : TestVo(buyNums >= 5)
 	then
-		$pointDomain.setPoint($pointDomain.getPoint()+$pointDomain.getBuyNums()/5 * 50);
-		$pointDomain.recordPointLog($pointDomain.getUserName(),"buyNums");
+		$testVo.setPoint($testVo.getPoint()+$testVo.getBuyNums()/5 * 50);
+		$testVo.recordPointLog($testVo.getUserName(),"buyNums");
 end
 
 rule allFitPoint
@@ -57,8 +57,8 @@ rule allFitPoint
 	salience 96
 	lock-on-active true
 	when
-		$pointDomain:PointDomain(buyNums >= 5 && billThisMonth >= 3 && buyMoney >= 100)
+		$testVo:TestVo(buyNums >= 5 && billThisMonth >= 3 && buyMoney >= 100)
 	then
-		$pointDomain.setPoint($pointDomain.getPoint()+ 100);
-		$pointDomain.recordPointLog($pointDomain.getUserName(),"allFit");
+		$testVo.setPoint($testVo.getPoint()+ 100);
+		$testVo.recordPointLog($testVo.getUserName(),"allFit");
 end

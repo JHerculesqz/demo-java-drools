@@ -19,5 +19,9 @@ public class DroolsRuleBaseFactory {
 		return ruleBase;
 	}
 
+	public static void setRuleBase(RuleBase oRuleBase) {
+		DroolsRuleBaseFactory.ruleBase = oRuleBase;
+	}
+
 	// #endregion
 }

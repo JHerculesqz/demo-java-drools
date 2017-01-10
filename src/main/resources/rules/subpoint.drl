@@ -1,16 +1,16 @@
 package rules
 
-import com.huawei.client.vo.PointDomain;
+import com.huawei.client.provider.subprovider.vo.TestVo;
 
 rule subBackNumsPoint
 	// 发生退货，扣减10分
 	salience 10
 	lock-on-active true
 	when
-		$pointDomain : PointDomain(backNums >= 1)
+		$testVo : TestVo(backNums >= 1)
 	then
-		$pointDomain.setPoint($pointDomain.getPoint()-10);
-		$pointDomain.recordPointLog($pointDomain.getUserName(),"subBackNums");
+		$testVo.setPoint($testVo.getPoint()-10);
+		$testVo.recordPointLog($testVo.getUserName(),"subBackNums");
 end
 
 rule subBackMondyPoint
@@ -18,8 +18,8 @@ rule subBackMondyPoint
 	salience 9
 	lock-on-active true
 	when
-		$pointDomain : PointDomain(backMondy >= 100)
+		$testVo : TestVo(backMondy >= 100)
 	then
-		$pointDomain.setPoint($pointDomain.getPoint()-10);
-		$pointDomain.recordPointLog($pointDomain.getUserName(),"subBackMondy");
+		$testVo.setPoint($testVo.getPoint()-10);
+		$testVo.recordPointLog($testVo.getUserName(),"subBackMondy");
 end

@@ -28,6 +28,7 @@ public class DroolsUtils {
 		try {
 			PackageBuilder backageBuilder = getPackageBuilderFromDrlFile(lstDrlFilePath);
 			oRuleBase.addPackages(backageBuilder.getPackages());
+			DroolsRuleBaseFactory.setRuleBase(oRuleBase);
 		} catch (DroolsParserException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
